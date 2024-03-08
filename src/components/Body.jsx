@@ -5,30 +5,42 @@ import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
 
 const Body = () => {
-
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   let filteredList = listOfRestaurants;
   const handleClick = () => {
     filteredList = listOfRestaurants.filter((value) => {
-      return value.info.avgRating > 4.5
+      return value.info.avgRating > 4.5;
     });
-    setListOfRestaurants(filteredList)
+    setListOfRestaurants(filteredList);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData = async() => {
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
     const json = await data.json();
     console.log(json);
-    console.log([json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants, json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants]);
-    setListOfRestaurants([...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants, ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants])
-  }
+    console.log([
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    ]);
+    setListOfRestaurants([
+      ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+      ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    ]);
+  };
 
-  if(listOfRestaurants.length === 0) return <ShimmerList />
-  return (
+  return listOfRestaurants.length === 0 ? (
+    <ShimmerList />
+  ) : (
     <div className="body">
       <button className="filter-btn" onClick={handleClick}>
         Filter Top Rated Restaurant
@@ -38,7 +50,7 @@ const Body = () => {
           <RestaurantCard data={value} key={index} />
         ))}
       </div>
-    </div> 
+    </div>
   );
 };
 
