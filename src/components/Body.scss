@@ -1,20 +1,25 @@
+$primary-color-1: #202020; 
+$primary-color-2: #303030; 
+$primary-color-3: #404040; 
+$primary-color-4: rgb(251,137,44);
+
 .body 
 {
     margin-top: 5rem;
     padding: 4rem 5rem;
+    margin-left:70px;
 }
 .res-list 
 {
     display: flex;
     // justify-content: space-around;
-    margin-left: 70px;
+    // margin-left: 70px;
     gap: 1.5rem;
     flex-wrap: wrap;
 }
 .filter-btn
 {
     cursor: pointer;
-    margin-bottom: 1.5rem;
     padding: 0.5rem 0.8rem;
     background-color: #808080;
     color: white;
@@ -25,5 +30,55 @@
     &:hover 
     {
         background-color: #707070;
+    }
+}
+.body-main 
+{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    .search 
+    {
+        display: flex;
+
+        input 
+        {
+            padding: .3rem .8rem;
+            font-size: 1.2rem;
+            height: 3rem;
+            outline: none;
+            width: 30rem;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border: none;
+        }
+        button 
+        {
+            height: 3rem;
+            padding:0.2rem .8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border: none;
+            background-color: $primary-color-4;
+            color:white;
+            
+            &:hover 
+            {
+                background-color: orange;
+            }
+
+            span 
+            {
+                padding: 0;
+                margin: 0;
+                font-size: 2rem;
+            }
+        }
     }
 }

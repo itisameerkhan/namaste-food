@@ -1,17 +1,26 @@
 import "./Body.scss";
-import { data } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard.jsx";
 import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState([]);
+
   let filteredList = listOfRestaurants;
   const handleClick = () => {
     filteredList = listOfRestaurants.filter((value) => {
       return value.info.avgRating > 4.5;
     });
     setListOfRestaurants(filteredList);
+  };
+
+  const handleSearch = () => {
+    const filteredRestaurant = listOfRestaurants.filter((data) =>
+      data.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredRestaurant(filteredRestaurant);
   };
 
   useEffect(() => {
@@ -24,13 +33,13 @@ const Body = () => {
     );
     const json = await data.json();
     console.log(json);
-    console.log([
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+    setListOfRestaurants([
+      ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
     ]);
-    setListOfRestaurants([
+    setFilteredRestaurant([
       ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants,
       ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
@@ -42,11 +51,25 @@ const Body = () => {
     <ShimmerList />
   ) : (
     <div className="body">
-      <button className="filter-btn" onClick={handleClick}>
-        Filter Top Rated Restaurant
-      </button>
+      <div className="body-main">
+        <button className="filter-btn" onClick={handleClick}>
+          Filter Top Rated Restaurant
+        </button>
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="search for restaurants"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+          <button onClick={handleSearch}>
+            <span className="material-symbols-outlined">search</span>
+          </button>
+        </div>
+      </div>
       <div className="res-list">
-        {listOfRestaurants.map((value, index) => (
+        {filteredRestaurant.map((value, index) => (
           <RestaurantCard data={value} key={index} />
         ))}
       </div>
