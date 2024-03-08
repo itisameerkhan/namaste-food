@@ -1,0 +1,68 @@
+.res-card
+{
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+    width: 290px;
+
+    &:hover 
+    {
+        transform: scale(0.95);
+    }
+}
+.res-card-img 
+{
+    position: relative;
+    border-radius: 15px;
+    
+    img 
+    {
+        height: 180px;
+        width: 280px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 15px;
+    }
+    .img-overlay
+    {
+        height: 180px;
+        width: 280px;
+        background: linear-gradient(to bottom, transparent,transparent, #000000);
+        position: absolute;
+        top: 0;
+        border-radius: 15px;
+    }
+}
+.rating 
+{
+    height: 20px;
+    width: 20px;
+}
+.title 
+{
+    font-weight: 600;
+}
+.res-card-desc 
+{
+    display: flex;
+    gap: 5px;
+    margin: 0.2rem  0;
+    font-weight: 600;
+}
+.cuisines, .areaname 
+{
+    color: #adadad;
+}
+.cost-for-two 
+{
+    font-family: "Bebas Neue";
+    font-size: 2rem;
+    padding-bottom: 0.2rem;
+    position: absolute;
+    bottom: 0;
+    width: 280px;
+    padding: 0 0 0.5rem 1rem;
+}
+.title, .res-card-desc, .cuisines, .areaname
+{
+    padding-left: 1rem;
+}
