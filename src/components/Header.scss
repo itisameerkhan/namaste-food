@@ -1,37 +1,32 @@
-$primary-color-1: #202020; 
-$primary-color-2: #303030; 
-$primary-color-3: #404040; 
-$primary-color-4: rgb(251,137,44);
+$primary-color-1: #202020;
+$primary-color-2: #303030;
+$primary-color-3: #404040;
+$primary-color-4: rgb(251, 137, 44);
 
-.header 
-{
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: $primary-color-1;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+
+  .left {
+    h1 {
+      font-family: "Kaushan Script";
+      color: $primary-color-4;
+    }
+  }
+  .right {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: $primary-color-1;
-    width: 100%;
-    position: fixed;
-    z-index: 99;
-    top: 0;
+    gap: 2rem;
 
-    .left 
-    {
-        h1 
-        {
-            font-family: "Kaushan Script";
-            color: $primary-color-4;
-        }
+    p {
+      font-size: 1.2rem;
+      cursor: pointer;
     }
-    .right 
-    {
-        display:flex;
-        gap: 2rem;
-
-        p 
-        {
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-    }
+  }
 }
