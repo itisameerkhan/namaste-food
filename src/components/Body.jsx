@@ -7,7 +7,7 @@ const Body = () => {
   
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
-  const [searchText, setSearchText] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   let filteredList = listOfRestaurants;
   const handleClick = () => {

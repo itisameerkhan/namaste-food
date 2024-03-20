@@ -669,3 +669,5 @@ export const data = [
   }
 ]
 export const CLOUD_IMAGE_ID = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+
+export const NOT_FOUND = "https://static.vecteezy.com/system/resources/thumbnails/024/217/744/small/design-template-for-web-page-with-404-error-isometric-page-not-working-error-png.png";
