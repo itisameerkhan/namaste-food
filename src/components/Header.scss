@@ -38,3 +38,12 @@ $primary-color-4: rgb(251, 137, 44);
 .header-temp {
   height: 78.4px;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-color-4;
+  }
+}
