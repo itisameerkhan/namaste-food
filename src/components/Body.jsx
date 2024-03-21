@@ -2,9 +2,9 @@ import "./Body.scss";
 import RestaurantCard from "./RestaurantCard.jsx";
 import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
+import { Link } from "react-router-dom";
 
 const Body = () => {
-  
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -71,7 +71,9 @@ const Body = () => {
       </div>
       <div className="res-list">
         {filteredRestaurant.map((value, index) => (
-          <RestaurantCard data={value} key={index} />
+          <Link key={value?.info?.id} to={`/restaurants/${value?.info?.id}`}>
+            <RestaurantCard data={value} />
+          </Link>
         ))}
       </div>
     </div>

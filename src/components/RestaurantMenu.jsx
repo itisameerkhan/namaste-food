@@ -1,29 +1,93 @@
 import { useEffect, useState } from "react";
 import "./RestaurantMenu.scss";
 import ShimmerMenu from "./ShimmerMenu";
+import { CLOUD_IMAGE_ID, MENU_API } from "../utils/constants";
+import { useParams } from "react-router-dom";
 
 const RestaurantMenu = () => {
-
   const [resInfo, setResInfo] = useState(null);
+  const { resId } = useParams();
+
+  console.log(resId);
 
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=9.91850&lng=76.25580&restaurantId=59491&catalog_qa=undefined&submitAction=ENTER"
-    );
+    const data = await fetch(MENU_API + resId);
     const json = await data.json();
-    console.log(json);
-    // setResInfo(json?.data?.cards[0]?.card?.card?.info);
+    // console.log(json);
+    setResInfo(json?.data);
   };
 
-  console.log(resInfo);
+  //   console.log(resInfo);
+  console.log(
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+      ?.itemCards
+  );
 
-  return resInfo === null ? <ShimmerMenu /> : (
+  if (resInfo === null) return <ShimmerMenu />;
+
+  const {
+    areaName,
+    avgRating,
+    city,
+    totalRatingsString,
+    cuisines,
+    name,
+    expectationNotifiers,
+  } = resInfo?.cards[0]?.card?.card?.info;
+
+  const { itemCards } =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+
+  return (
     <div className="res-menu">
-      <h1>Restaurant Menu</h1>
+      <p className="location">
+        Home / {city} / <span>{name}</span>
+      </p>
+      <div className="res-menu-main">
+        <div className="res-menu-main-inner">
+          <div className="res-menu-main-left">
+            <h2 className="name">{name}</h2>
+            <p className="cuisine">{cuisines.join(", ")}</p>
+            <p className="area">{areaName}</p>
+          </div>
+          <div className="res-menu-main-right">
+            <p className="avg-rating">
+              <span className="material-symbols-outlined">star</span>
+              {avgRating}
+            </p>
+            <p className="avg-rating-string">{totalRatingsString}</p>
+          </div>
+        </div>
+        <div className="res-menu-main-down">
+          <span className="material-symbols-outlined">directions_bike</span>
+          <p>{expectationNotifiers[0].text}</p>
+        </div>
+      </div>
+      <div className="res-menu-recommended">
+        <h3>Recommended</h3>
+        <div className="res-menu-items">
+          {itemCards.map((data) => (
+            <div className="res-menu-rec" key={data.card.info.id}>
+              <div className="res-menu-rec-left">
+                <h4>{data.card.info.name}</h4>
+                <p className="rec-price">
+                  ₹{" "}
+                  {data?.card?.info?.price / 100 ||
+                    data?.card?.info?.defaultPrice / 100}
+                </p>
+                <p className="desc">{data?.card?.info?.description}</p>
+              </div>
+              <div className="res-menu-rec-right">
+                <img src={CLOUD_IMAGE_ID + data?.card?.info?.imageId} alt="" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

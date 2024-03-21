@@ -2,3 +2,100 @@ $primary-color-1: #202020;
 $primary-color-2: #303030;
 $primary-color-3: #404040;
 $primary-color-4: rgb(251, 137, 44);
+
+.res-menu 
+{
+    margin: 0 15rem;
+    margin-top: 2rem;
+}
+.location
+{
+    font-size: 0.8rem;
+
+    span 
+    {
+        font-weight: 500;
+    }
+}
+.res-menu-main 
+{
+    padding-top: 3rem;
+    border-bottom: 1px solid gray;
+}
+.res-menu-main-inner 
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .res-menu-main-left 
+    {
+        .name 
+        {
+            margin-bottom: .5rem;
+        }
+        .cuisine, .area
+        {
+            color: rgb(179, 179, 179);
+        }
+    }
+    .res-menu-main-right 
+    {
+        border:1px solid gray;
+        padding: .5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+        .avg-rating 
+        {
+            font-weight: bolder;
+            color: rgb(126, 252, 126);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid gray;
+        }
+    }
+}
+.res-menu-main-down 
+{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    color: rgb(179, 179, 179);
+}
+.res-menu-recommended 
+{
+    margin-top: 2rem;
+
+    .desc 
+    {
+        font-size: 1rem;
+        margin-top: .75rem;
+        color: rgb(179, 179, 179);
+    }
+}
+.res-menu-rec-right 
+{
+    img 
+    {
+        height: 100px;
+        width: 120px;
+        border-radius: 10px;
+    }
+}
+.res-menu-rec 
+{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+}
+.res-menu-items
+{
+    margin-top: 2rem;
+}
