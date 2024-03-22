@@ -21,7 +21,6 @@ const RestaurantMenu = () => {
     setResInfo(json?.data);
   };
 
-  //   console.log(resInfo);
   console.log(
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
       ?.itemCards
