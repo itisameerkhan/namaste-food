@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import "./RestaurantMenu.scss";
+import { useEffect, useState } from "react";
 import ShimmerMenu from "./ShimmerMenu";
 import { CLOUD_IMAGE_ID, MENU_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
