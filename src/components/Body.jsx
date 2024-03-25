@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard.jsx";
 import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
 import { Link } from "react-router-dom";
+import Cors from "./Cors.jsx";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -29,24 +30,30 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    console.log(json);
-    setListOfRestaurants([
-      ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-      ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-    ]);
-    setFilteredRestaurant([
-      ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-      ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants,
-    ]);
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+      console.log(json);
+      setListOfRestaurants([
+        ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants,
+        ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants,
+      ]);
+      setFilteredRestaurant([
+        ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants,
+        ...json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants,
+      ]);
+    } catch (err) {
+      setListOfRestaurants(null);
+    }
   };
+
+  if(listOfRestaurants === null) return <Cors />
 
   return listOfRestaurants.length === 0 ? (
     <ShimmerList />

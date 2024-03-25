@@ -1,0 +1,19 @@
+.cors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  gap: 1rem;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    img {
+      width: 80%;
+      border-radius: 10px;
+    }
+  }
+}
