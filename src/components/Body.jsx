@@ -53,7 +53,7 @@ const Body = () => {
     }
   };
 
-  if(listOfRestaurants === null) return <Cors />
+  if (listOfRestaurants === null) return <Cors />;
 
   return listOfRestaurants.length === 0 ? (
     <ShimmerList />
