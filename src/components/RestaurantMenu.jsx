@@ -27,6 +27,8 @@ const RestaurantMenu = () => {
 
   if (resInfo === null) return <ShimmerMenu />;
 
+  console.log(resInfo);
+
   const {
     areaName,
     avgRating,
@@ -35,10 +37,10 @@ const RestaurantMenu = () => {
     cuisines,
     name,
     expectationNotifiers,
-  } = resInfo?.cards[0]?.card?.card?.info;
+  } = resInfo?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
   return (
     <div className="res-menu">
