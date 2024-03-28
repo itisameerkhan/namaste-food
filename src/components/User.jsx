@@ -8,7 +8,6 @@ const User = () => {
     const data = await fetch("https://api.github.com/users/itisameerkhan");
     const json = await data.json();
     setUserData(json);
-    console.log(json);
   };
   useEffect(() => {
     fetchData();
