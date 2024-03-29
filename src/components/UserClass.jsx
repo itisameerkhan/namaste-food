@@ -8,7 +8,7 @@ class UserClass extends React.Component {
   render() {
     return (
       <div className="user-class">
-        <p>{this.props.name}</p>
+        <h1>{this.props.name}</h1>
         <h1>Class based Component</h1>
       </div>
     );
