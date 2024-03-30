@@ -3,6 +3,7 @@ import "./User.scss";
 
 const User = () => {
   const [userData, setUserData] = useState(null);
+  const [count, setCount] = useState(0);
 
   const fetchData = async () => {
     const data = await fetch("https://api.github.com/users/itisameerkhan");

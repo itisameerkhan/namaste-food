@@ -1,5 +1,5 @@
 import "./Header.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -10,12 +10,12 @@ const Header = () => {
         </div>
         <div className="right">
           <p>
-          <Link to={"/"}>Home</Link>
+          <NavLink to={"/"}>Home</NavLink>
           </p>
           <p>
-            <Link to={"/about"}>About us</Link>
+            <NavLink to={"/about"}>About us</NavLink>
           </p>
-          <p><Link to={"/contact"}>Contact</Link></p>
+          <p><NavLink to={"/contact"}>Contact</NavLink></p>
           <p>Cart</p>
         </div>
       </div>

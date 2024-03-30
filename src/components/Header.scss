@@ -48,4 +48,7 @@ $primary-color-4: rgb(251, 137, 44);
       color: $primary-color-4;
     }
   }
+  a.active {
+    color: $primary-color-4;
+  }
 }
