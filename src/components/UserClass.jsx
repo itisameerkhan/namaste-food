@@ -2,6 +2,7 @@ import React from "react";
 import "./UserClass.scss";
 
 class UserClass extends React.Component {
+  
   constructor(props) {
     console.log("constructor");
     super(props);
