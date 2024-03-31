@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Cors from "./Cors.jsx";
 
 const Body = () => {
+  console.log("Main page");
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -35,7 +36,7 @@ const Body = () => {
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
-      console.log(json);
+      // console.log(json);
       setListOfRestaurants([
         ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants,

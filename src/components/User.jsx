@@ -12,6 +12,13 @@ const User = () => {
   };
   useEffect(() => {
     fetchData();
+    const timer = setInterval(() => {
+      console.log("NAMASTE REACT 🚀 from useEffect");
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    }
   }, []);
 
   return userData === null ? (

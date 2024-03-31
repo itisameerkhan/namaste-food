@@ -2,9 +2,8 @@ import React from "react";
 import "./UserClass.scss";
 
 class UserClass extends React.Component {
-  
   constructor(props) {
-    console.log("constructor");
+    console.log("About us Page");
     super(props);
 
     this.state = {
@@ -14,7 +13,7 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     const data = await fetch("https://api.github.com/users/akshaymarch7");
     const json = await data.json();
 
@@ -23,16 +22,23 @@ class UserClass extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    console.log("componentDidUpdate");
-  }
+  // componentDidUpdate(previousProps, previousState) {
+  //   console.log("componentDidUpdate");
+  // }
+
+  // componentDidMount() {
+  //   this.timer = setInterval(() => {
+  //     console.log("NAMASTE REACT 🚀");
+  //   }, 1000);
+  // }
 
   componentWillUnmount() {
-    console.log("componentWillUmount");
+    clearInterval(this.timer)
+    // console.log("componentWillUmount");
   }
 
   render() {
-    console.log("render");
+    // console.log("render");
     const { name, avatar_url, bio, public_repos, followers, following } =
       this.state.userInfo;
 
