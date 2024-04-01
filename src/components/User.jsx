@@ -18,7 +18,7 @@ const User = () => {
 
     return () => {
       clearInterval(timer);
-    }
+    };
   }, []);
 
   return userData === null ? (
