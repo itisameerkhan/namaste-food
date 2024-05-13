@@ -3,31 +3,15 @@ import { useEffect, useState } from "react";
 import ShimmerMenu from "./ShimmerMenu";
 import { CLOUD_IMAGE_ID, MENU_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+  // const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
-
-  console.log(resId);
-
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    setResInfo(json?.data);
-  };
-
-  console.log(
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
-      ?.itemCards
-  );
+  const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) return <ShimmerMenu />;
 
-  console.log(resInfo);
 
   const {
     areaName,

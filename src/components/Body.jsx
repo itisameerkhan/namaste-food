@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
 import { Link } from "react-router-dom";
 import Cors from "./Cors.jsx";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 
 const Body = () => {
   console.log("Main page");
@@ -26,10 +27,13 @@ const Body = () => {
     setFilteredRestaurant(filteredRestaurant);
   };
 
+  const onlineStatus = useOnlineStatus();
+
   useEffect(() => {
     fetchData();
   }, []);
 
+  if(onlineStatus === false) return <h1>Looks like you are offline!</h1>
   const fetchData = async () => {
     try {
       const data = await fetch(
