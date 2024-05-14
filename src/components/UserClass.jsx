@@ -22,23 +22,11 @@ class UserClass extends React.Component {
     });
   }
 
-  // componentDidUpdate(previousProps, previousState) {
-  //   console.log("componentDidUpdate");
-  // }
-
-  // componentDidMount() {
-  //   this.timer = setInterval(() => {
-  //     console.log("NAMASTE REACT 🚀");
-  //   }, 1000);
-  // }
-
   componentWillUnmount() {
-    clearInterval(this.timer)
-    // console.log("componentWillUmount");
+    clearInterval(this.timer);
   }
 
   render() {
-    // console.log("render");
     const { name, avatar_url, bio, public_repos, followers, following } =
       this.state.userInfo;
 
