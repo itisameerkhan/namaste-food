@@ -3,7 +3,6 @@ import "./UserClass.scss";
 
 class UserClass extends React.Component {
   constructor(props) {
-    console.log("About us Page");
     super(props);
 
     this.state = {
@@ -13,7 +12,6 @@ class UserClass extends React.Component {
   }
 
   async componentDidMount() {
-    // console.log("componentDidMount");
     const data = await fetch("https://api.github.com/users/akshaymarch7");
     const json = await data.json();
 
