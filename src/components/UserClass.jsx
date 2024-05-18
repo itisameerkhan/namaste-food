@@ -23,6 +23,7 @@ class UserClass extends React.Component {
   componentWillUnmount() {
     clearInterval(this.timer);
   }
+  
 
   render() {
     const { name, avatar_url, bio, public_repos, followers, following } =
