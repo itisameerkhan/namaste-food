@@ -1,5 +1,5 @@
 import "./Body.scss";
-import RestaurantCard from "./RestaurantCard.jsx";
+import RestaurantCard, { withVegLabel } from "./RestaurantCard.jsx";
 import { useState, useEffect } from "react";
 import ShimmerList from "./ShimmerList.jsx";
 import { Link } from "react-router-dom";
@@ -11,6 +11,8 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardVeg = withVegLabel(RestaurantCard);
 
   let filteredList = listOfRestaurants;
   const handleClick = () => {
@@ -33,14 +35,17 @@ const Body = () => {
     fetchData();
   }, []);
 
-  if(onlineStatus === false) return <h1>Looks like you are offline!</h1>
+  if (onlineStatus === false) return <h1>Looks like you are offline!</h1>;
   const fetchData = async () => {
     try {
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=9.91850&lng=76.25580&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
-      // console.log(json);
+      console.log(
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
       setListOfRestaurants([
         ...json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants,
@@ -84,7 +89,11 @@ const Body = () => {
       <div className="res-list">
         {filteredRestaurant.map((value, index) => (
           <Link key={value?.info?.id} to={`/restaurants/${value?.info?.id}`}>
-            <RestaurantCard data={value} />
+            {value?.info?.veg ? (
+              <RestaurantCardVeg data={value} />
+            ) : (
+              <RestaurantCard data={value} />
+            )}
           </Link>
         ))}
       </div>

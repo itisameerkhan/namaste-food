@@ -59,3 +59,22 @@
 .areaname {
   padding-left: 1rem;
 }
+.with-veg {
+  position: relative;
+
+  &:hover .veg-label {
+    transform: translate(5px, 5px);
+  }
+}
+.veg-label {
+  position: absolute;
+  z-index: 9;
+  top: 10px;
+  background-color: green;
+  color: white;
+  padding: 5px 20px;
+  font-size: 15px;
+  left: -8px;
+  border-radius: 2px;
+  transition: all 100ms ease-in-out;
+}

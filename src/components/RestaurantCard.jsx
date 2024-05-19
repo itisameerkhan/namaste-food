@@ -11,7 +11,9 @@ const RestaurantCard = ({ data }) => {
           alt="res-img"
         />
         <div className="img-overlay"></div>
-        {data?.info?.aggregatedDiscountInfoV3?.header && <p className="cost-for-two">{`${data?.info?.aggregatedDiscountInfoV3?.header} ${data?.info?.aggregatedDiscountInfoV3?.subHeader}`}</p>}
+        {data?.info?.aggregatedDiscountInfoV3?.header && (
+          <p className="cost-for-two">{`${data?.info?.aggregatedDiscountInfoV3?.header} ${data?.info?.aggregatedDiscountInfoV3?.subHeader}`}</p>
+        )}
       </div>
       <p className="title">{data?.info?.name}</p>
       <div className="res-card-desc">
@@ -23,6 +25,17 @@ const RestaurantCard = ({ data }) => {
       <p className="areaname">{data?.info?.areaName}</p>
     </div>
   );
+};
+
+export const withVegLabel = (RestaurantCard) => {
+  return ({ data }) => {
+    return (
+      <div className="with-veg">
+        <p className="veg-label">Veg</p>
+        <RestaurantCard data={data} />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;
