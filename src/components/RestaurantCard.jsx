@@ -32,6 +32,7 @@ export const withVegLabel = (RestaurantCard) => {
     return (
       <div className="with-veg">
         <p className="veg-label">Veg</p>
+        <div className="veg-div"></div>
         <RestaurantCard data={data} />
       </div>
     );

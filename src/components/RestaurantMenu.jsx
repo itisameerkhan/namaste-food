@@ -4,6 +4,7 @@ import ShimmerMenu from "./ShimmerMenu";
 import { CLOUD_IMAGE_ID, MENU_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   // const [resInfo, setResInfo] = useState(null);
@@ -11,7 +12,6 @@ const RestaurantMenu = () => {
   const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) return <ShimmerMenu />;
-
 
   const {
     areaName,
@@ -26,6 +26,19 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
+  // console.log(
+  //   "recommended",
+  //   resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+  // );
+
+  const categories =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+
+    console.log(categories);
   return (
     <div className="res-menu">
       <p className="location">
@@ -51,7 +64,7 @@ const RestaurantMenu = () => {
           <p>{expectationNotifiers[0].text}</p>
         </div>
       </div>
-      <div className="res-menu-recommended">
+      {/* <div className="res-menu-recommended">
         <h3>Recommended</h3>
         <div className="res-menu-items">
           {itemCards.map((data) => (
@@ -71,7 +84,12 @@ const RestaurantMenu = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
+      {categories.map((data) => (
+        <div>
+          <RestaurantCategory data={data?.card?.card} />
+        </div>
+      ))}
     </div>
   );
 };
