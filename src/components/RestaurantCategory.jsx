@@ -1,20 +1,23 @@
 import "./RestaurantCategory.scss";
-import { CLOUD_IMAGE_ID } from "../utils/constants.js";
 import ItemList from "./ItemList.jsx";
+import { useState } from "react";
 
 const RestaurantCategory = (props) => {
+  const [showItems, setShowItems] = useState(true);
+
   console.log(props);
   return (
     <div className="res-menu-recommended">
-      <div className="res-menu-title">
+      <div className="res-menu-title" onClick={() => setShowItems(!showItems)}>
         <h3>
           {props?.data?.title} ({props?.data?.itemCards.length})
         </h3>
-        <span className="material-symbols-outlined">keyboard_arrow_down</span>
+        <span className="material-symbols-outlined">
+          {showItems ? "keyboard_arrow_down" : "keyboard_arrow_up"}
+        </span>
       </div>
-      {props?.data?.itemCards.map((data) => (
-        <ItemList data={data} />
-      ))}
+      {showItems &&
+        props?.data?.itemCards.map((data) => <ItemList data={data} />)}
     </div>
   );
 };

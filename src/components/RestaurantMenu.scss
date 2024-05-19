@@ -78,6 +78,8 @@ $primary-color-4: rgb(251, 137, 44);
     height: 100px;
     width: 120px;
     border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
   }
 }
 .res-menu-rec {
@@ -120,6 +122,8 @@ $primary-color-4: rgb(251, 137, 44);
     border-radius: 5px;
     border: 1px solid gray;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
     &:hover {
       background-color: rgb(208, 208, 208);
@@ -135,6 +139,8 @@ $primary-color-4: rgb(251, 137, 44);
     display: flex;
     align-items: center;
     border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+      rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
     p {
       color: black;
@@ -162,7 +168,6 @@ $primary-color-4: rgb(251, 137, 44);
       &:nth-child(3) {
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
-
       }
     }
     * {
@@ -172,4 +177,12 @@ $primary-color-4: rgb(251, 137, 44);
       font-weight: bold;
     }
   }
+}
+.veg-svg {
+  height: 16px;
+  width: 16px;
+}
+.res-above {
+  display: flex;
+  gap: 0.5rem;
 }
