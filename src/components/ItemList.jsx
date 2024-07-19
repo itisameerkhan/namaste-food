@@ -3,9 +3,42 @@ import { CLOUD_IMAGE_ID } from "../utils/constants";
 import nonveg from "../assets/nonveg.svg";
 import veg from "../assets/veg.svg";
 import bestSeller from "../assets/bestSeller.svg";
+import { useDispatch } from "react-redux";
+import { addItem, removeItem, updateCart } from "../utils/cartSlice";
 
 const ItemList = (data) => {
   const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+
+  const handleAddItem = () => {
+    setCount(count + 1);
+    dispatch(
+      addItem({
+        data: data,
+        count: count + 1,
+      })
+    );
+  };
+
+  const handleUpdateCart = () => {
+    setCount(count + 1);
+    dispatch(
+      updateCart({
+        data: data,
+        count: count + 1,
+      })
+    );
+  };
+
+  const handleRemoveItem = () => {
+    setCount(count - 1);
+    dispatch(
+      removeItem({
+        data: data,
+        count: count - 1,
+      })
+    );
+  };
 
   return (
     <div className="res-menu-rec" key={data.data.card.info.id}>
@@ -30,14 +63,14 @@ const ItemList = (data) => {
         <img src={CLOUD_IMAGE_ID + data.data?.card?.info?.imageId} alt="img" />
         <div className="add-btn">
           {count === 0 ? (
-            <button className="btn-1" onClick={() => setCount(count + 1)}>
+            <button className="btn-1" onClick={handleAddItem}>
               ADD
             </button>
           ) : (
             <div className="count-btn">
-              <button onClick={() => setCount(count - 1)}>-</button>
+              <button onClick={handleRemoveItem}>-</button>
               <p>{count}</p>
-              <button className="right-btn" onClick={() => setCount(count + 1)}>
+              <button className="right-btn" onClick={handleUpdateCart}>
                 +
               </button>
             </div>
