@@ -29,7 +29,7 @@ const ItemList = (data) => {
       <div className="res-menu-rec-right">
         <img src={CLOUD_IMAGE_ID + data.data?.card?.info?.imageId} alt="img" />
         <div className="add-btn">
-          {count === 0 ? ( 
+          {count === 0 ? (
             <button className="btn-1" onClick={() => setCount(count + 1)}>
               ADD
             </button>

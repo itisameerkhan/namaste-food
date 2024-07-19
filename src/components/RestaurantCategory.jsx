@@ -1,23 +1,18 @@
 import "./RestaurantCategory.scss";
 import ItemList from "./ItemList.jsx";
-import { useState } from "react";
 
-const RestaurantCategory = (props) => {
-  const [showItems, setShowItems] = useState(true);
-
-  console.log(props);
+const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   return (
     <div className="res-menu-recommended">
-      <div className="res-menu-title" onClick={() => setShowItems(!showItems)}>
+      <div className="res-menu-title" onClick={() => setShowIndex()}>
         <h3>
-          {props?.data?.title} ({props?.data?.itemCards.length})
+          {data?.title} ({data?.itemCards.length})
         </h3>
         <span className="material-symbols-outlined">
-          {showItems ? "keyboard_arrow_down" : "keyboard_arrow_up"}
+          {showItems ? "keyboard_arrow_up" : "keyboard_arrow_down"}
         </span>
       </div>
-      {showItems &&
-        props?.data?.itemCards.map((data) => <ItemList data={data} />)}
+      {showItems && data?.itemCards.map((data) => <ItemList data={data} />)}
     </div>
   );
 };
